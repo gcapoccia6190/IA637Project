@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>{{ book.Title }}</h2>
+
+{% if from_viewbooks %}
+    {% if book.Blurb %}
+        <p><strong>Back Cover Blurb:</strong><br>{{ book.Blurb }}</p>
+    {% else %}
+        <p><em>No description available.</em></p>
+    {% endif %}
+{% else %}
+    <ul>
+        <li><strong>Author:</strong> {{ book.Author }}</li>
+        <li><strong>ISBN:</strong> {{ book.ISBN }}</li>
+        <li><strong>Genre:</strong> {{ book.Genre }}</li>
+        <li><strong>Edition:</strong> {{ book.EditionNumber }}</li>
+        <li><strong>Publish Year:</strong> {{ book.PublishYear }}</li>
+        <li><strong>Status:</strong> {{ book.Status }}</li>
+    </ul>
+
+    {% if book.Blurb %}
+        <p><strong>Back Cover Blurb:</strong><br>{{ book.Blurb }}</p>
+    {% else %}
+        <p><em>No description available.</em></p>
+    {% endif %}
+{% endif %}
+
+{% endblock %}
+

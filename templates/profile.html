@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>My Profile</h2>
+
+<form method="POST">
+    <table>
+        <tr><th>Full Name:</th><td><input type="text" name="FullName" value="{{ user.FullName }}" required></td></tr>
+        <tr><th>Username:</th><td><input type="text" name="Username" value="{{ user.Username }}" required></td></tr>
+        <tr><th>Email:</th><td><input type="email" name="Email" value="{{ user.Email }}" required></td></tr>
+        <tr><th>Role:</th><td><input type="text" value="{{ user.Role }}" disabled></td></tr>
+        <tr><th>New Password:</th><td><input type="password" name="Password" placeholder="Leave blank to keep current"></td></tr>
+    </table>
+    <br>
+    <input type="submit" value="Update Profile">
+</form>
+
+<hr>
+<h3>Books You’ve Interacted With</h3>
+{% if books %}
+    <ul>
+    {% for book in books %}
+        <li>{{ book.Title }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p><em>No interactions yet.</em></p>
+{% endif %}
+
+<br>
+<a href="/dashboard">Back to Main Menu</a>
+
+{% endblock %}
+

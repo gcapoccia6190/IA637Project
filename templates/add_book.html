@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Add a New Book</h2>
+
+{% if msg %}
+  <div style="color: red;">{{ msg }}</div>
+{% endif %}
+
+<form method="POST">
+    Title: <input type="text" name="Title" required><br><br>
+    Author: <input type="text" name="Author" required><br><br>
+    ISBN: <input type="text" name="ISBN" required><br><br>
+    Genre: <input type="text" name="Genre"><br><br>
+    Edition Number: <input type="number" name="EditionNumber"><br><br>
+    Publish Year: <input type="number" name="PublishYear"><br><br>
+    <input type="submit" value="Add Book">
+</form>
+
+{% endblock %}
+

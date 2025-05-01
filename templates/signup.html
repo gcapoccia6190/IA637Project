@@ -1,0 +1,29 @@
+{% extends "loginbase.html" %}
+{% block content %}
+
+<h2>Create Your Account</h2>
+
+{% if msg %}
+    <p style="color:red;">{{ msg }}</p>
+{% endif %}
+
+<form method="POST">
+    <label>Full Name:</label><br>
+    <input type="text" name="FullName" required><br><br>
+
+    <label>Username:</label><br>
+    <input type="text" name="Username" required><br><br>
+
+    <label>Email:</label><br>
+    <input type="email" name="Email" required><br><br>
+
+    <label>Password:</label><br>
+    <input type="password" name="Password" required><br><br>
+
+    <input type="submit" value="Sign Up">
+</form>
+
+<p>Already have an account? <a href="/login">Login here</a>.</p>
+
+{% endblock %}
+

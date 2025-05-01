@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Edit Book Information (Admin)</h2>
+
+<form method="POST">
+    <label>Title:</label><br>
+    <input type="text" name="Title" value="{{ book.Title }}" required><br><br>
+
+    <label>Author:</label><br>
+    <input type="text" name="Author" value="{{ book.Author }}" required><br><br>
+
+    <label>ISBN:</label><br>
+    <input type="text" name="ISBN" value="{{ book.ISBN }}" required><br><br>
+
+    <label>Genre:</label><br>
+    <input type="text" name="Genre" value="{{ book.Genre }}"><br><br>
+
+    <label>Edition Number:</label><br>
+    <input type="text" name="EditionNumber" value="{{ book.EditionNumber }}"><br><br>
+
+    <label>Publish Year:</label><br>
+    <input type="text" name="PublishYear" value="{{ book.PublishYear }}"><br><br>
+
+    <label>Status:</label><br>
+    <select name="Status">
+        <option value="active" {% if book.Status == 'active' %}selected{% endif %}>active</option>
+        <option value="inactive" {% if book.Status == 'inactive' %}selected{% endif %}>inactive</option>
+    </select><br><br>
+
+    <label>Blurb (Back Cover Text):</label><br>
+    <textarea name="Blurb" rows="5" cols="50">{{ book.Blurb or '' }}</textarea><br><br>
+
+    <input type="submit" value="Save Changes">
+</form>
+
+<br>
+<a href="/admin">Back to Admin Dashboard</a>
+
+{% endblock %}

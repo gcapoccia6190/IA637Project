@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Main Menu</h1>
+    <div id="menumsg">
+        Hello, {{ username }}
+    </div>
+    <br><br>
+
+    <a href="/books">View Books</a><br>
+    <a href="/books/add">Add Book</a><br>
+    <a href="/interactions">View Interactions</a><br>
+    <a href="/profile">My Profile</a><br>
+
+
+    {% if role == 'reader' %}
+        <a href="/user/review">Add Review</a><br>
+    {% elif role == 'admin' %}
+        <a href="/admin/review">Add Review</a><br>
+        
+        <a href="/admin">Admin Dashboard</a><br>
+    {% endif %}
+
+    <a href="/logout">Logout</a><br>
+
+    {% if role == 'reader' and trending_books %}
+        <hr>
+        <h2>📈 Trending Books</h2>
+        <table border="1" cellpadding="5">
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Genre</th>
+                <th>Reviews</th>
+            </tr>
+            {% for book in trending_books %}
+            <tr>
+                <td><a href="/book/{{ book.BookID }}">{{ book.Title }}</a></td>
+                <td>{{ book.Author }}</td>
+                <td>{{ book.Genre }}</td>
+                <td>{{ book.InteractionCount }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+
+{% endblock %}

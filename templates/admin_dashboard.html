@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Admin Dashboard: Activate Books</h2>
+
+<table border="1">
+    <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Confirmations</th>
+        <th>Action</th>
+    </tr>
+    {% for book in books %}
+    <tr>
+        <td><a href="/book/{{ book.BookID }}">{{ book.Title }}</a></td>
+        <td>{{ book.Author }}</td>
+        <td>{{ book.ConfirmCount }}</td>
+        <td><a href="/admin/edit_book/{{ book.BookID }}">Edit</a></td>
+        <td>
+            <td>
+                {% if book.Status == 'inactive' and book.ConfirmCount >= 2 %}
+                <form method="POST">
+                    <input type="hidden" name="BookID" value="{{ book.BookID }}">
+                    <input type="hidden" name="Action" value="activate">
+                    <input type="submit" value="Activate">
+                </form>
+                {% elif book.Status == 'active' %}
+                <form method="POST">
+                    <input type="hidden" name="BookID" value="{{ book.BookID }}">
+                    <input type="hidden" name="Action" value="deactivate">
+                    <input type="submit" value="Deactivate">
+                </form>
+                {% else %}
+                <em>Not enough confirmations</em>
+                {% endif %}
+            </td>
+            
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

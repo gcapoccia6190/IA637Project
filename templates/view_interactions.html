@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Book Interactions</h2>
+
+{% if session['username'] == 'admin' %}
+<form method="POST">
+    <label for="BookID">Filter by Book:</label>
+    <select name="BookID">
+        {% for book in books %}
+            <option value="{{ book.BookID }}">{{ book.Title }} by {{ book.Author }}</option>
+        {% endfor %}
+    </select>
+    <input type="submit" value="Filter">
+</form>
+<br>
+{% endif %}
+
+<table border="1">
+    <tr>
+        <th>User</th>
+        <th>Book</th>
+        <th>Type</th>
+        <th>Content</th>
+        <th>Rating</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Location</th>
+    </tr>
+    {% for i in interactions %}
+    <tr>
+        <td>{{ i.Username }}</td>
+        <td><a href="/book/{{ i.BookID }}">{{ i.Title }}</a></td>
+        <td>{{ i.InteractionType }}</td>
+        <td>{{ i.Content or "-" }}</td>
+        <td>{{ i.Rating or "-" }}</td>
+        <td>{{ i.Date or "-" }}</td>
+        <td>{{ i.Time or "-" }}</td>
+        <td>{{ i.Location or "-" }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}
+

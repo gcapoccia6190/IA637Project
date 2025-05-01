@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Confirm Inactive Books</h2>
+
+{% if msg %}
+  <div style="color:red;">{{ msg }}</div>
+{% endif %}
+
+{% if books %}
+  <form method="POST">
+    <label for="BookID">Select Book to Confirm:</label><br>
+    <select name="BookID">
+      {% for book in books %}
+        <option value="{{ book.BookID }}">{{ book.Title }} by {{ book.Author }}</option>
+      {% endfor %}
+    </select><br><br>
+
+    Notes:<br>
+    <textarea name="Notes" rows="4" cols="40"></textarea><br><br>
+    <input type="submit" value="Confirm Book">
+  </form>
+{% else %}
+  <p>No inactive books to confirm right now.</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Trending Books</h2>
+
+<table border="1" cellpadding="5">
+    <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Genre</th>
+        <th>Edition</th>
+        <th>Year</th>
+        <th>Reviews</th>
+    </tr>
+    {% for book in trending %}
+    <tr>
+        <td><a href="/book/{{ book.BookID }}">{{ book.Title }}</a></td>
+        <td>{{ book.Author }}</td>
+        <td>{{ book.Genre }}</td>
+        <td>{{ book.EditionNumber }}</td>
+        <td>{{ book.PublishYear }}</td>
+        <td>{{ book.InteractionCount }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}
